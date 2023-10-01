@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Array Presentation</title>
+</head>
+
+<body>
+    <h1>Books</h1>
+
+    <!-- Button to display the array as a table -->
+    <button id="tableButton">Display as Table</button>
+
+    <!-- Button to display the array as a list -->
+    <button id="listButton">Display as List</button>
+
+    <!-- Container for displaying the array -->
+    <div id="arrayContainer"></div>
+
+    <script>
+        // Create an array of books
+        const books = [
+            {
+                title: "The Great Gatsby",
+                author: "F. Scott Fitzgerald",
+                publicationYear: 1925
+            },
+            {
+                title: "To Kill a Mockingbird",
+                author: "Harper Lee",
+                publicationYear: 1960
+            },
+            {
+                title: "1984",
+                author: "George Orwell",
+                publicationYear: 1949
+            },
+            {
+                title: "The Catcher in the Rye",
+                author: "J.D. Salinger",
+                publicationYear: 1951
+            },
+            {
+                title: "Pride and Prejudice",
+                author: "Jane Austen",
+                publicationYear: 1813
+            }
+        ];
+
+        // Function to display the array as a table
+        function displayTable() {
+            const arrayContainer = document.getElementById("arrayContainer");
+            arrayContainer.innerHTML = "";
+            const table = document.createElement("table");
+
+            // Create table headers with bold text
+            const headerRow = table.insertRow();
+            const titleHeader = headerRow.insertCell(0);
+            const authorHeader = headerRow.insertCell(1);
+            const yearHeader = headerRow.insertCell(2);
+            titleHeader.innerHTML = "<b>Book Name</b>";
+            authorHeader.innerHTML = "<b>Author</b>";
+            yearHeader.innerHTML = "<b>Publish Year</b>";
+
+            // Create separating line (header row)
+            table.appendChild(document.createElement("hr"));
+
+            // Create table rows for each book
+            for (const book of books) {
+                const row = table.insertRow();
+                const titleCell = row.insertCell(0);
+                const authorCell = row.insertCell(1);
+                const yearCell = row.insertCell(2);
+                titleCell.textContent = book.title;
+                authorCell.textContent = book.author;
+                yearCell.textContent = book.publicationYear;
+            }
+
+            arrayContainer.appendChild(table);
+        }
+
+
+        // Function to display the array as a list
+        function displayList() {
+            const arrayContainer = document.getElementById("arrayContainer");
+            arrayContainer.innerHTML = "";
+            const list = document.createElement("ul");
+            for (const book of books) {
+                const listItem = document.createElement("li");
+                listItem.textContent = `${book.title} by ${book.author} (${book.publicationYear})`;
+                list.appendChild(listItem);
+            }
+            arrayContainer.appendChild(list);
+        }
+
+        // Add event listeners to the buttons
+        document.getElementById("tableButton").addEventListener("click", displayTable);
+        document.getElementById("listButton").addEventListener("click", displayList);
+    </script>
+</body>
+
+</html>
